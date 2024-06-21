@@ -29,6 +29,7 @@ class albumModel extends model
 
         $sentencia = $db->prepare("INSERT INTO album(album,imagen) VALUES (?,?)");
         $sentencia->execute([$album, $pathImage]);
+        return $this->$db->lastInsertId();
     }
 
     private function uploadImage($image)

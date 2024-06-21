@@ -35,6 +35,7 @@ class cancionesModel extends model
         $db = $this->createConexion();
         $sentencia = $db->prepare("INSERT INTO cancion(nombre,artista,id_album) VALUES (?,?,?)");
         $sentencia->execute([$nombre, $artista, $id_album]);
+        return $this->$db->lastInsertId();
     }
 
     function delete($id)

@@ -1,10 +1,10 @@
 <?php
 require_once "APP/model/cancionesModel.php";
-require_once "APP/view/songsView.php";
+require_once "APP/view/APIView.php";
 require_once "APP/helper/authHelper.php";
 require_once 'APP/model/authModel.php';
 require_once "APP/model/albumModel.php";
-class sonsgController
+class songsController
 {
     protected $authModel;
     protected $authHelper;
@@ -17,7 +17,7 @@ class sonsgController
         $this->authHelper = new authHelper();
         $this->songModel = new cancionesModel();
         $this->albumModel = new albumModel();
-        $this->view = new sonsgView();
+        $this->view = new APIView();
         $this->authModel = new authModel();
     }
 
