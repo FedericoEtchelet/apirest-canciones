@@ -44,7 +44,7 @@ class albumApiController
         $id = $params[':ID'];
         $album = $this->model->getAlbumId($id);
         if ($album) {
-            $this->model->deleteAlbum($album);
+            $this->model->deleteAlbum($album->id);
             $this->view->response("El album fue eliminado con éxito.", 200);
         } else {
             $this->view->response("ERROR el album con ID: {$id} no existe o no pudo ser encontrado", 404);
@@ -59,7 +59,7 @@ class albumApiController
         if ($album) {
             $this->view->response($album, 200);
         } else {
-            $this->view->response("ERROR el album no pudo ser insertado.", 500);
+            $this->view->response("ERROR el album no pudo ser insertado.", 400);
         }
     }
 
@@ -69,8 +69,8 @@ class albumApiController
         $data = $this->getData();
         $album = $this->model->getAlbumId($id);
         if ($album) {
-            $this->model->editAlbum($data->nombre, $data->id_album);
-            $this->view->response("El album fue editado con éxito.", 200);
+            $this->model->editAlbum($data->nombre, $id);
+            $this->view->response("El album fue editado con éxito.", 201);
         } else {
             $this->view->response("ERROR el album con el id: {$id} no pudo ser editado.", 404);
         }

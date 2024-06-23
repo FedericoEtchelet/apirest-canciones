@@ -22,10 +22,33 @@ class songsApiController
         return json_decode($this->data);
     }
 
-    public function getSongs($params = null)
+    public function getSongs()
     {
-        $songs = $this->model->getAllSongs();
-        $this->view->response($songs, 200);
+        if (isset($_GET['direccion'])) {
+            $direc = $_GET['direccion'];
+            if ($direc == "desc") {
+                $songs = $this->model->getAllSongs();
+                rsort($songs);
+                $this->view->response($songs, 200);
+            }
+            //FILTRO POR ALBUM ID
+        } elseif (isset($_GET['id_album'])) {
+            $id_album = $_GET['id_album'];
+            $songs = $this->model->getSongByAlbum($id_album);
+            $this->view->response($songs, 200);
+            //FILTRO POR ARTISTA
+        } elseif (isset($_GET['artista'])) {
+            $artista = $_GET['artista'];
+            $songs = $this->model->getSongByArtist($artista);
+            $this->view->response($songs, 200);
+
+        } else {
+            $songs = $this->model->getAllSongs();
+            if ($songs)
+                $this->view->response($songs, 200);
+            else
+                $this->view->response("NO HAY CANCIONES.", 404);
+        }
     }
 
     public function getSongByid($params = null)
@@ -44,7 +67,8 @@ class songsApiController
         $id = $params[":ID"];
         $song = $this->model->getSongById($id);
         if ($song) {
-            $this->model->delete($song);
+            $this->model->delete($song->id);
+            $this->view->response("La cancion ha sido eliminada con éxito", 200);
         } else {
             $this->view->response("ERROR la cancion con ID: {$id} no existe o no pudo ser encontrada", 404);
         }
@@ -58,7 +82,7 @@ class songsApiController
         if ($song) {
             $this->view->response($song, 200);
         } else {
-            $this->view->response("ERROR la cancion no ha sido agregada.", 500);
+            $this->view->response("ERROR la cancion no ha sido agregada.", 400);
         }
     }
 
@@ -68,8 +92,8 @@ class songsApiController
         $data = $this->getData();
         $song = $this->model->getSongById($id);
         if ($song) {
-            $this->model->editSong($data->nombre, $data->artista, $data->id_album, $data->$id);
-            $this->view->response("La cancion ha sido modificada con éxito.", 200);
+            $this->model->editSong($data->nombre, $data->artista, $data->id_album, $id);
+            $this->view->response("La cancion ha sido modificada con éxito.", 201);
         } else {
             $this->view->response("ERROR la cancion no existe o no puede ser modificada.", 404);
         }

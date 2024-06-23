@@ -30,10 +30,19 @@ class cancionesModel extends model
         return $cancion;
     }
 
+    function getSongByArtist($artista)
+    {
+        $db = $this->createConexion();
+        $sentencia = $db->prepare("SELECT * from cancion where artista = ?");
+        $sentencia->execute([$artista]);
+        $cancion = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $cancion;
+    }
+
     function insertSong($nombre, $artista, $id_album)
     {
         $db = $this->createConexion();
-        $sentencia = $db->prepare("INSERT INTO cancion(nombre,artista,id_album) VALUES (?,?,?)");
+        $sentencia = $db->prepare("INSERT INTO cancion (nombre,artista,id_album) VALUES (?,?,?)");
         $sentencia->execute([$nombre, $artista, $id_album]);
         return $this->$db->lastInsertId();
     }
