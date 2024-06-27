@@ -1,8 +1,7 @@
 <?php
 require_once 'APIView.php';
 require_once 'APP/model/albumModel.php';
-require_once 'configApi.php';
-require_once 'APP/API/token.api.controller.php';
+require_once 'APP/API/tokenApiController.php';
 class albumApiController
 {
     private $model;
@@ -15,7 +14,7 @@ class albumApiController
         $this->model = new albumModel();
         $this->view = new APIView();
         $this->data = file_get_contents("php://input");
-        $this->token = new tokenApiController;
+        $this->token = new tokenApiController();
     }
 
     private function getData()

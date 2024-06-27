@@ -1,7 +1,7 @@
 <?php
 require_once 'libs/Router.php';
-require_once 'APP/API/songs.api.controller.php';
-require_once 'APP/API/album.api.controller.php';
+require_once 'APP/API/songsApiController.php';
+require_once 'APP/API/albumApiController.php';
 
 define("BASE_URL", 'http://' . $_SERVER["SERVER_NAME"] . ':' . $_SERVER["SERVER_PORT"] . dirname($_SERVER["PHP_SELF"]) . '/');
 

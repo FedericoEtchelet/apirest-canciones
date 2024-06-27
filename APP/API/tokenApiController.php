@@ -1,7 +1,7 @@
 <?php
-
+require_once "configApi.php";
 class tokenApiController{
-    private function verificarseguridadToken($token)
+  public function verificarSeguridadToken($token)
     {
         global $configApi;
         try {
@@ -23,7 +23,7 @@ class tokenApiController{
         }
     }
 
-    private function verificarSeguridad()
+    public  function verificarSeguridad()
     {
         global $configApi;
         $headers = apache_request_headers();
@@ -32,7 +32,7 @@ class tokenApiController{
         $tipo = $parametros[0];
         $token = $parametros[1];
         if ($tipo == 'Bearer') {
-            return $this->verificarseguridadToken($token);
+            return $this->verificarSeguridadToken($token);
         } else {
             return false;
         }
