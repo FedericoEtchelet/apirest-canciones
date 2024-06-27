@@ -3,10 +3,10 @@ require_once "APP/model/model.php";
 class cancionesModel extends model
 {
 
-    function getAllSongs()
+    function getAllSongs($orderBy, $orderDir)
     {
         $db = $this->createConexion();
-        $sentencia = $db->prepare("SELECT * FROM cancion");
+        $sentencia = $db->prepare("SELECT * FROM cancion ORDER BY  $orderBy $orderDir ");
         $sentencia->execute();
         $cancion = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $cancion;
