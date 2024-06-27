@@ -100,3 +100,11 @@ Por ejemplo:
 Si colocamos este link: http://127.0.0.1/web/apirest-canciones/api/songs/34 USAMOS EL METODO PUT
 
 La cancion con ID:34 será la cancion a editar (en caso de que existiera).
+____
+## TOKEN 
+
+### IMPORTANTE
+
+SIEMPRE QUE QUERRAMOS MODIFICAR O AGREGAR, OSEA USAR LOS METODOS PUT O POST, TENDREMOS QUE AUTENTICARNOS CON EL SIGUIENTE TOKEN:
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjoiYWRtaW4iLCJjbGF2ZSI6IndlYmFkbWluIn0.yYaJUjREUHvvlm17Z8YGZ0fZE5zilaW4vpdSXuSFALs
+
