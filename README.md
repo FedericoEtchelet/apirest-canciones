@@ -9,7 +9,7 @@ Este endpoint llama a la funcion getSongs(), y se encarga de pedir la colección
 
    Si colocamos este link: http://127.0.0.1/web/apirest-canciones/api/songs?orderBy=id&orderDir=ASC 
    
-	NOTA: USAMOS EL METODO GET, LOS PARAMETROS orderBy Y orderDir SON OBLIGATORIOS.
+	NOTA: USAMOS EL METODO GET, LOS PARAMETROS orderBy Y orderDir SON OBLIGATORIOS, si el usuario no ingresa ni el orderBy ni el orderDir, por defecto, se le colocara en orderBy por id y en orderDir, ASC.
  	LOS PARAMETROS PARA orderBy pueden ser: id; nombre; artista; id_album.
 	LOS PARAMETROS PARA orderDir pueden ser: ASC; DESC.
  
